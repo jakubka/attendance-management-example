@@ -1,0 +1,14 @@
+﻿@model EmployeeDetailModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detail zamestnance @Model.Employee.Name</h2>
+
+<dl>
+    <dt>Jmeno</dt><dd>@Model.Employee.Name</dd>
+    <dt>Vek</dt><dd>@Model.Employee.Age</dd>
+    <dt>Pocet odpracovanych hodin</dt><dd>@Model.TotalTimeAtWork</dd>
+</dl>

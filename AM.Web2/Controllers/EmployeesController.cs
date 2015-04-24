@@ -104,5 +104,59 @@ namespace AM.Web2.Controllers
 
             return View(model);
         }
+
+        public ActionResult Detail(int id)
+        {
+            using (var context = new AMDbContext())
+            {
+                var employee = context.Employees.SingleOrDefault(e => e.EmployeeId == id);
+
+                if (employee == null)
+                {
+                    return HttpNotFound();
+                }
+
+                var model = new EmployeeDetailModel()
+                {
+                    Employee = new EmployeeModel()
+                    {
+                        Age = employee.Age,
+                        Name = employee.Name,
+                        Id = employee.EmployeeId,
+                    },
+                    TotalTimeAtWork = ComputeTotalTimeAtWork(employee.EmployeeId),
+                };
+
+                return View(model);
+            }
+        }
+
+        private TimeSpan ComputeTotalTimeAtWork(int id)
+        {
+            using (var context = new AMDbContext())
+            {
+                var passes = context.Passes.Where(p => p.EmployeeId == id).OrderBy(p => p.Time).ToList();
+                
+                var pairs = new List<ArriveLeavePair>();
+
+                for (int i = 0; i < passes.Count; i += 2)
+                {
+                    pairs.Add(new ArriveLeavePair()
+                    {
+                        Arrival = passes[i].Time,
+                        Leave = passes[i + 1].Time,
+                    });
+                }
+
+                return pairs.Aggregate(TimeSpan.Zero, (total, pair) => total + (pair.Leave - pair.Arrival));
+            }
+        }
+
+        private class ArriveLeavePair
+        {
+            public DateTime Arrival { get; set; }
+
+            public DateTime Leave { get; set; }
+        }
     }
 }
