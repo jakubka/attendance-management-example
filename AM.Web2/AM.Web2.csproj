@@ -138,6 +138,10 @@
       <Project>{D96B5B59-869F-42A6-A5A0-3B6F2BEF1EBD}</Project>
       <Name>AM.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AM.Domain\AM.Domain.csproj">
+      <Project>{BF9C95F9-A73C-470E-9450-DA9643D7E016}</Project>
+      <Name>AM.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
