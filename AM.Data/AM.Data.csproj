@@ -36,6 +36,9 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -47,8 +50,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AMDbContext.cs" />
+    <Compile Include="DomainNinjectModule.cs" />
+    <Compile Include="EfPassRepository.cs" />
     <Compile Include="Entities\Employee.cs" />
     <Compile Include="Entities\Pass.cs" />
+    <Compile Include="IDbContext.cs" />
+    <Compile Include="IPassRepository.cs" />
+    <Compile Include="IRepository.cs" />
     <Compile Include="Migrations\201504240758550_InitialCreate.cs" />
     <Compile Include="Migrations\201504240758550_InitialCreate.Designer.cs">
       <DependentUpon>201504240758550_InitialCreate.cs</DependentUpon>

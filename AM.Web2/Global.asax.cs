@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Whisky.Web;
 
 namespace AM.Web2
 {
@@ -13,6 +14,10 @@ namespace AM.Web2
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            MainKernel.Init();
+
+            //DependencyResolver.SetResolver(new NinjectDependencyResolver(MainKernel.Kernel));
         }
     }
 }

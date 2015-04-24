@@ -45,6 +45,9 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -104,8 +107,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="MainKernel.cs" />
     <Compile Include="Models\EmployeeDetailModel.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
+    <Compile Include="NinjectControllerFactory.cs" />
+    <Compile Include="NinjectDependencyResolver.cs" />
+    <Compile Include="NinjectDependencyScope.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

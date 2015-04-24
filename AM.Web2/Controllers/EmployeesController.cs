@@ -7,11 +7,15 @@ using AM.Data;
 using AM.Data.Entities;
 using AM.Domain;
 using AM.Web2.Models;
+using Ninject;
+using Whisky.Web;
 
 namespace AM.Web2.Controllers
 {
     public class EmployeesController : Controller
     {
+        private ITimeAtWorkCalculator _timeAtWorkCalculator = MainKernel.Kernel.Get<ITimeAtWorkCalculator>();
+
         public ActionResult List()
         {
             using (var context = new AMDbContext("AMConnectionString"))
@@ -120,12 +124,12 @@ namespace AM.Web2.Controllers
                 var model = new EmployeeDetailModel()
                 {
                     Employee = new EmployeeModel()
-                    {
+                    {   
                         Age = employee.Age,
                         Name = employee.Name,
                         Id = employee.EmployeeId,
                     },
-                    TotalTimeAtWork = new TimeAtWorkCalculator().ComputeTotalTimeAtWork(employee.EmployeeId),
+                    TotalTimeAtWork = _timeAtWorkCalculator.ComputeTotalTimeAtWork(employee.EmployeeId),
                 };
 
                 return View(model);
