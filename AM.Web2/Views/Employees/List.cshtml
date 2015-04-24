@@ -1,0 +1,15 @@
+﻿@model List<EmployeeModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.ActionLink("Vytvorit noveho zamestnance", "Create")
+
+<ul>
+    @foreach (var employee in Model)
+    {
+        <li>
+            @employee.Name, Age @employee.Age
+        </li>
+    }
+</ul>
